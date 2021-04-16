@@ -132,10 +132,10 @@ public class IntroScene: SKScene {
     
     func changeAudio(text:String){
         self.utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "Siri")
-        utterance.rate = 0.4
-        utterance.pitchMultiplier = 1.5
-        utterance.volume = 0.75
+        self.utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
+        self.utterance.rate = 0.4
+        self.utterance.pitchMultiplier = 1.5
+        self.utterance.volume = 0.75
     }
     
     func openNewScene(){

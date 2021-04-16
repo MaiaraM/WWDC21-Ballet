@@ -245,39 +245,37 @@ public class GameScene: SKScene {
         }
     }
     
-    
     func changeAudio(text:String){
         self.utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "Siri")
-        utterance.rate = 0.4
-        utterance.pitchMultiplier = 1.5
-        utterance.volume = 0.75
+        self.utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
+        self.utterance.rate = 0.3
+        self.utterance.pitchMultiplier = 1.0
+        self.utterance.volume = 0.75
     }
     
     
     func openVideo() {
+           
         self.videoNode.run(SKAction.fadeAlpha(to: 1, duration: 1))
         self.videoNode.run(SKAction.moveTo(x: 0, duration: 1))
         self.videoNode.run(SKAction.moveTo(y: 2, duration: 1))
-        self.videoNode.run(SKAction.resize(toWidth: self.size.width, duration: 1))
-        self.videoNode.run(SKAction.resize(toHeight: self.size.height / 2 , duration: 1))
+        self.videoNode.run(SKAction.resize(toWidth: 750, duration: 1))
+        self.videoNode.run(SKAction.resize(toHeight: 500 , duration: 1))
         
-        let heightVideo = self.videoNode.anchorPoint.y - (self.videoNode.size.height + 100)
         
-        self.barraControllerVideo.size = CGSize(width: self.size.width, height: 60)
-        self.barraControllerVideo.position = CGPoint(x: 0, y: heightVideo)
+        self.barraControllerVideo.size = CGSize(width: 750, height: 60)
+        self.barraControllerVideo.position = CGPoint(x: 0, y:  self.videoNode.anchorPoint.y - 260)
         self.barraControllerVideo.zPosition = 9
                 
         self.closeIcon.size = CGSize(width: 60, height: 60)
-        self.closeIcon.position = CGPoint(x: self.frame.maxX - 50 , y: self.videoNode.size.height + 60)
+        self.closeIcon.position = CGPoint(x: self.barraControllerVideo.position.x + ( self.barraControllerVideo.size.width / 2.2) , y: self.videoNode.size.height + 60)
         
         self.controllerIcon.size = CGSize(width: 20, height: 20)
         self.controllerIcon.run(SKAction.setTexture(SKTexture(imageNamed: "PauseIcon.png")))
-        self.controllerIcon.position = CGPoint(x: self.frame.minX + 40, y: self.barraControllerVideo.position.y)
-        
-        
+        self.controllerIcon.position = CGPoint(x: self.barraControllerVideo.position.x - ( self.barraControllerVideo.size.width / 2) + 40 , y: self.barraControllerVideo.position.y)
+
         self.resetIcon.size = CGSize(width: 30, height: 30)
-        self.resetIcon.position = CGPoint(x: self.frame.maxX - 40, y: self.barraControllerVideo.position.y)
+        self.resetIcon.position = CGPoint(x: self.barraControllerVideo.position.x + ( self.barraControllerVideo.size.width / 2) - 40 , y: self.barraControllerVideo.position.y)
         
         resetControllerVideo(open: true)
 
@@ -286,6 +284,7 @@ public class GameScene: SKScene {
         self.videoIsPause = false
         self.videoNode.name = "openVideo"
         self.videoThumb?.run(SKAction.fadeAlpha(to: 0, duration: 1))
+        
     }
     
     func closeVideo() {

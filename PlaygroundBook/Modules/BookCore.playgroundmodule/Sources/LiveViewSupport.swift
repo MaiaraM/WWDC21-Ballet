@@ -8,11 +8,19 @@
 import UIKit
 import PlaygroundSupport
 
+
+public enum StoryBoards : String{
+    case explanationStory = "LiveView"
+    case gameBaseStory = "GameBaseView"
+    case gameStory = "GameView"
+}
+
+
 /// Instantiates a new instance of a live view.
 ///
 /// By default, this loads an instance of `LiveViewController` from `LiveView.storyboard`.
-public func instantiateLiveView() -> PlaygroundLiveViewable {
-    let storyboard = UIStoryboard(name: "GameView", bundle: nil)
+public func instantiateLiveView(_ storyBoard:StoryBoards = .explanationStory) -> PlaygroundLiveViewable {
+    let storyboard = UIStoryboard(name: storyBoard.rawValue, bundle: nil)
 
     guard let viewController = storyboard.instantiateInitialViewController() else {
         fatalError("LiveView.storyboard does not have an initial scene; please set one or update this function")
@@ -24,3 +32,4 @@ public func instantiateLiveView() -> PlaygroundLiveViewable {
 
     return liveViewController
 }
+
