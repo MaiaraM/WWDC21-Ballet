@@ -33,6 +33,7 @@ public class GameScene: SKScene {
     
     private var choice:String!
     private var videoIsPause:Bool = true
+    private var audioMusic:SKAudioNode?
 
     
     private var bgVideoPlayer:AVPlayer!
@@ -64,6 +65,11 @@ public class GameScene: SKScene {
         
         if let chat = self.childNode(withName: "//chatNode") as? SKSpriteNode {
             self.chat = chat
+        }
+        
+        if let audioMusic = self.childNode(withName: "//audioMusic") as? SKAudioNode {
+            self.audioMusic = audioMusic
+            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.4), duration: 0))
         }
         
         
@@ -132,8 +138,6 @@ public class GameScene: SKScene {
             self.closeIcon.name = "closeIcon"
             self.resetIcon.zPosition = 12
             self.resetIcon.name = "resetIcon"
-
-            
             
             resetControllerVideo(open: false)
             
@@ -240,21 +244,22 @@ public class GameScene: SKScene {
         }
         self.label?.text = text
         changeAudio(text: audioText)
-        if !synthesizer.isSpeaking {
-            synthesizer.speak(utterance)
-        }
+        if self.synthesizer.isSpeaking {self.synthesizer.stopSpeaking(at: .immediate)}
+        self.synthesizer.speak(utterance)
     }
     
     func changeAudio(text:String){
         self.utterance = AVSpeechUtterance(string: text)
         self.utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
-        self.utterance.rate = 0.3
-        self.utterance.pitchMultiplier = 1.0
-        self.utterance.volume = 0.75
+        self.utterance.rate = 0.4
+        self.utterance.pitchMultiplier = 1.5
+        self.utterance.volume = 0.9
     }
     
     
     func openVideo() {
+        self.audioMusic?.run(SKAction.pause())
+
            
         self.videoNode.run(SKAction.fadeAlpha(to: 1, duration: 1))
         self.videoNode.run(SKAction.moveTo(x: 0, duration: 1))
@@ -288,6 +293,8 @@ public class GameScene: SKScene {
     }
     
     func closeVideo() {
+        self.audioMusic?.run(SKAction.play())
+
         if let videoThumb = self.videoThumb {
             resetControllerVideo(open: false)
 

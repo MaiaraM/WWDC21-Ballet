@@ -44,6 +44,10 @@
 		CA7C030D262A145300B900FB /* GameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA7C030F262A145300B900FB /* GameView.storyboard */; };
 		CA7C0350262A210700B900FB /* Ballet.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA7C034F262A210700B900FB /* Ballet.mp4 */; };
 		CA7C0351262A210700B900FB /* Ballet.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA7C034F262A210700B900FB /* Ballet.mp4 */; };
+		CA984AB1262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA984AB0262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 */; };
+		CA984AB2262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA984AB0262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 */; };
+		CA984AB8262CAF9D00482189 /* musciintro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA984AB7262CAF9D00482189 /* musciintro.mp3 */; };
+		CA984AB9262CAF9D00482189 /* musciintro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA984AB7262CAF9D00482189 /* musciintro.mp3 */; };
 		CA9ADD96262A279A0061B43B /* GameBaseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CA9ADD95262A279A0061B43B /* GameBaseScene.sks */; };
 		CA9ADD97262A279A0061B43B /* GameBaseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CA9ADD95262A279A0061B43B /* GameBaseScene.sks */; };
 		CA9ADD9D262A27E50061B43B /* GameBaseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA9ADD9C262A27E50061B43B /* GameBaseView.storyboard */; };
@@ -198,6 +202,8 @@
 		CA7C02DB262A0D7400B900FB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		CA7C030E262A145300B900FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GameView.storyboard; sourceTree = "<group>"; };
 		CA7C034F262A210700B900FB /* Ballet.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ballet.mp4; sourceTree = "<group>"; };
+		CA984AB0262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Anderson_The_Syncopated_Clock.mp3; sourceTree = "<group>"; };
+		CA984AB7262CAF9D00482189 /* musciintro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = musciintro.mp3; sourceTree = "<group>"; };
 		CA9ADD95262A279A0061B43B /* GameBaseScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameBaseScene.sks; sourceTree = "<group>"; };
 		CA9ADD9C262A27E50061B43B /* GameBaseView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameBaseView.storyboard; sourceTree = "<group>"; };
 		CA9ADDA3262A2A190061B43B /* GameBaseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBaseScene.swift; sourceTree = "<group>"; };
@@ -422,6 +428,8 @@
 		5EF2F9792054B64800191409 /* PrivateResources */ = {
 			isa = PBXGroup;
 			children = (
+				CA984AB7262CAF9D00482189 /* musciintro.mp3 */,
+				CA984AB0262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 */,
 				CA7C034F262A210700B900FB /* Ballet.mp4 */,
 				CA7C02DB262A0D7400B900FB /* Actions.sks */,
 				CA9ADD95262A279A0061B43B /* GameBaseScene.sks */,
@@ -598,12 +606,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA7C02DC262A0D7400B900FB /* Actions.sks in Resources */,
+				CA984AB8262CAF9D00482189 /* musciintro.mp3 in Resources */,
 				CA7C028E262A0A6200B900FB /* GameScene.sks in Resources */,
 				5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */,
 				CA7C0350262A210700B900FB /* Ballet.mp4 in Resources */,
 				5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */,
 				CA7C02C9262A0C5000B900FB /* FloorScene.sks in Resources */,
 				5E086DCA2051DDAE004D8D25 /* LiveView.storyboard in Resources */,
+				CA984AB1262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 in Resources */,
 				CA9ADD96262A279A0061B43B /* GameBaseScene.sks in Resources */,
 				CA9ADD9D262A27E50061B43B /* GameBaseView.storyboard in Resources */,
 				CA7C02C7262A0C5000B900FB /* IntroScene.sks in Resources */,
@@ -618,9 +628,11 @@
 				CA7C02C8262A0C5000B900FB /* IntroScene.sks in Resources */,
 				CA7C02CA262A0C5000B900FB /* FloorScene.sks in Resources */,
 				CA7C028F262A0A6200B900FB /* GameScene.sks in Resources */,
+				CA984AB2262CACAD00482189 /* Anderson_The_Syncopated_Clock.mp3 in Resources */,
 				CA9ADD97262A279A0061B43B /* GameBaseScene.sks in Resources */,
 				CA7C0351262A210700B900FB /* Ballet.mp4 in Resources */,
 				5EA2E3CA2056F35B00416A35 /* LiveViewTestAppLaunchScreen.storyboard in Resources */,
+				CA984AB9262CAF9D00482189 /* musciintro.mp3 in Resources */,
 				CA7C02DD262A0D7400B900FB /* Actions.sks in Resources */,
 				CA9ADD9E262A27E50061B43B /* GameBaseView.storyboard in Resources */,
 				CA7C030D262A145300B900FB /* GameView.storyboard in Resources */,

@@ -20,13 +20,13 @@ public class IntroScene: SKScene {
     private var label : SKLabelNode?
     
     private var buttonAudio : SKSpriteNode?
-    private var audioNode : SKAudioNode = SKAudioNode(fileNamed: "music.mp3")
-
 
     private var me : SKSpriteNode?
     private var chat : SKSpriteNode?
     private var nextButton:SKSpriteNode?
     private var returnButton:SKSpriteNode?
+    private var audioMusic:SKAudioNode?
+
     
     private var utterance:AVSpeechUtterance!
     private let synthesizer = AVSpeechSynthesizer()
@@ -48,6 +48,11 @@ public class IntroScene: SKScene {
         if let chat = self.childNode(withName: "//chatNode") as? SKSpriteNode {
             self.chat = chat
             self.chat?.alpha = 1
+        }
+        
+        if let audioMusic = self.childNode(withName: "//audioMusic") as? SKAudioNode {
+            self.audioMusic = audioMusic
+            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.3), duration: 0))
         }
         
         
@@ -81,7 +86,6 @@ public class IntroScene: SKScene {
                 changeAudio(text: dialogues[index].text)
                 self.chat?.run(SKAction.init(named: "Chat1")!)
 
-                self.audioNode = SKAudioNode(fileNamed: dialogues[index].audio)
                 if let action = dialogues[index].action {
                     self.me?.run(action)
                 }
@@ -100,7 +104,6 @@ public class IntroScene: SKScene {
                 changeAudio(text: dialogues[index].text)
                 self.chat?.run(SKAction.init(named: "Chat1")!)
 
-                self.audioNode = SKAudioNode(fileNamed: dialogues[index].audio)
                 if let action = dialogues[index].action {
                     self.me?.run(action)
                 }
@@ -139,6 +142,7 @@ public class IntroScene: SKScene {
     }
     
     func openNewScene(){
+        if synthesizer.isSpeaking { synthesizer.stopSpeaking(at: .immediate)}
         let transition:SKTransition = SKTransition.crossFade(withDuration: 1.5)
         if let scene = FloorScene(fileNamed: "FloorScene") {
             if let view = self.view {

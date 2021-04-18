@@ -21,7 +21,6 @@ public class FloorScene: SKScene {
     private var chat : SKSpriteNode?
     
     private var buttonAudio : SKSpriteNode?
-    private var audioNode : SKAudioNode = SKAudioNode(fileNamed: "music.mp3")
     
     private var footRight : SKSpriteNode?
     private var footLeft : SKSpriteNode?
@@ -30,6 +29,8 @@ public class FloorScene: SKScene {
     
     private var numberLabel : SKLabelNode!
     private var circleNumber : SKSpriteNode!
+    private var audioMusic:SKAudioNode?
+
     
     var beganRight:Array<CGFloat>!
     var beganLeft:Array<CGFloat>!
@@ -51,6 +52,11 @@ public class FloorScene: SKScene {
             self.chat = chat
         }
         
+        if let audioMusic = self.childNode(withName: "//audioMusic") as? SKAudioNode {
+            self.audioMusic = audioMusic
+            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.3), duration: 0))
+        }
+        
         if let circleNumber = self.childNode(withName: "//circleNumber") as? SKSpriteNode {
             self.circleNumber = circleNumber
             self.circleNumber.isHidden = true
@@ -70,8 +76,6 @@ public class FloorScene: SKScene {
         if let buttonAudio = self.childNode(withName: "//audioButton") as? SKSpriteNode {
             self.buttonAudio = buttonAudio
         }
-        
-        
         
         if let footLeft = self.childNode(withName: "//footLeft") as? SKSpriteNode {
             beganLeft = [footLeft.position.x,footLeft.position.y ]
@@ -102,6 +106,8 @@ public class FloorScene: SKScene {
                 self.label?.text = stepsDate[index].text
                 if let textAudio = stepsDate[index].text {
                     changeAudio(text: textAudio)
+//                    if self.synthesizer.isSpeaking {self.synthesizer.stopSpeaking(at: .immediate)}
+//                    self.synthesizer.speak(utterance)
                 }
                 self.chat?.run(SKAction.init(named: "Chat")!)
                 
@@ -118,11 +124,14 @@ public class FloorScene: SKScene {
                 if index + 1 == stepsDate.count {
                     self.nextButton?.run(SKAction.init(named: "Desaper")!)
                 }
-
+                
             }
     }
         
         public func returnPage() {
+            if index + 1 == stepsDate.count {
+                self.nextButton?.run(SKAction.init(named: "Show")!)
+            }
             if index - 1 >= 0 {
                 index -= 1
                 if index == 0{
@@ -141,10 +150,9 @@ public class FloorScene: SKScene {
                 }else{
                     self.circleNumber?.run(SKAction.init(named: "Desaper")!)
                 }
-    
                 moveFeet(stepsDate: stepsDate[index])
-                
             }
+          
         }
     
     public func moveFeet(stepsDate:Step ){
@@ -178,13 +186,12 @@ public class FloorScene: SKScene {
         }
     }
     
+    
     func changeAudio(text:String){
         self.utterance = AVSpeechUtterance(string: text)
         self.utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
         self.utterance.rate = 0.4
         self.utterance.pitchMultiplier = 1.5
         self.utterance.volume = 0.75
-    
     }
-
 }
