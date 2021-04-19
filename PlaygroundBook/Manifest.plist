@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ImageReference</key>
+	<string>capa-book.png</string>
 	<key>Version</key>
 	<string>7.0</string>
 	<key>ContentIdentifier</key>
@@ -25,7 +27,7 @@
 		<string>BookAPI</string>
 	</array>
 	<key>UserModuleMode</key>
-	<string>Full</string>
+	<string>Disabled</string>
 	<key>SupportsDarkMode</key>
 	<true/>
 </dict>

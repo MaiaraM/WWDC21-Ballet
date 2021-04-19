@@ -22,6 +22,7 @@ public let dialoguesHistory: [Dialogue] = [
     Dialogue(text: "Stand up and don't forget to always stretch your knees", action: SKAction.init(named: "D2")),
 ]
 
+
 public let positions:[String:String] = [
     "button1": "\n First Position. \n (1st position)",
     "button2": "\n Second Position.\n (2nd position)",

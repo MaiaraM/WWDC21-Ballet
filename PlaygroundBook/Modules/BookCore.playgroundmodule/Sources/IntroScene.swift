@@ -51,8 +51,9 @@ public class IntroScene: SKScene {
         }
         
         if let audioMusic = self.childNode(withName: "//audioMusic") as? SKAudioNode {
+            self.audioMusic = SKAudioNode(fileNamed: "musciintro.mp3")
             self.audioMusic = audioMusic
-            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.3), duration: 0))
+            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.35), duration: 0))
         }
         
         
@@ -138,8 +139,9 @@ public class IntroScene: SKScene {
         self.utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
         self.utterance.rate = 0.4
         self.utterance.pitchMultiplier = 1.5
-        self.utterance.volume = 0.75
+        self.utterance.volume = 0.9
     }
+    
     
     func openNewScene(){
         if synthesizer.isSpeaking { synthesizer.stopSpeaking(at: .immediate)}

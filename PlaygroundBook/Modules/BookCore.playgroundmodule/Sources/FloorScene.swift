@@ -54,7 +54,7 @@ public class FloorScene: SKScene {
         
         if let audioMusic = self.childNode(withName: "//audioMusic") as? SKAudioNode {
             self.audioMusic = audioMusic
-            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.3), duration: 0))
+            self.audioMusic?.run(SKAction.changeVolume(to: Float(0.35), duration: 0))
         }
         
         if let circleNumber = self.childNode(withName: "//circleNumber") as? SKSpriteNode {
@@ -192,6 +192,7 @@ public class FloorScene: SKScene {
         self.utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
         self.utterance.rate = 0.4
         self.utterance.pitchMultiplier = 1.5
-        self.utterance.volume = 0.75
+        self.utterance.volume = 0.9
     }
+    
 }

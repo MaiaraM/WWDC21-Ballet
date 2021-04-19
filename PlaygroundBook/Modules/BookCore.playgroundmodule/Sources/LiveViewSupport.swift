@@ -10,6 +10,7 @@ import PlaygroundSupport
 
 
 public enum StoryBoards : String{
+    case baseStory = "IntroBaseView"
     case explanationStory = "LiveView"
     case gameBaseStory = "GameBaseView"
     case gameStory = "GameView"
@@ -19,7 +20,7 @@ public enum StoryBoards : String{
 /// Instantiates a new instance of a live view.
 ///
 /// By default, this loads an instance of `LiveViewController` from `LiveView.storyboard`.
-public func instantiateLiveView(_ storyBoard:StoryBoards = .explanationStory) -> PlaygroundLiveViewable {
+public func instantiateLiveView(_ storyBoard:StoryBoards = .baseStory) -> PlaygroundLiveViewable {
     let storyboard = UIStoryboard(name: storyBoard.rawValue, bundle: nil)
 
     guard let viewController = storyboard.instantiateInitialViewController() else {

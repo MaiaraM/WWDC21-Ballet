@@ -6,6 +6,7 @@
 //  The Swift file containing the source code edited by the user of this playground book.
 //
 //#-end-hidden-code
+//#-hidden-code
 import BookCore
 import SpriteKit
 import PlaygroundSupport
@@ -13,7 +14,7 @@ import UIKit
 
 PlaygroundPage.current.liveView = instantiateLiveView(.gameStory)
 
-public func startExplanation(){
+public func startGame(){
     if let viewController = PlaygroundPage.current.liveView as? UIViewController{
         if let scene = GameScene(fileNamed: "GameScene") {
             if let view = viewController.view as? SKView{
@@ -23,14 +24,17 @@ public func startExplanation(){
         }
     }
 }
-
+//#-end-hidden-code
 /*:
- TODO Escrever o StoryTelling com os tópicos:
- - A importância da dança no para desenvolvimento de consciência corporal, coordenação motora. ritmo, criatividade e desenvolvimento artístico
-  - Dificuldade de dar aula na quarentena e prender a atenção da criança
-  - Falar pouco da minha experiencia
+ ![Play Frame](frame_play.png)
+ This chapter was inspired by a game I used to do with my students when I was a dance teacher.
+ 
+ Let's practice what you learned!! I will tell you the name of the position and you have to choose the correct one, like Simon says’
+
+ In the top left corner I have recorded a video I did, so you can watch and help you remember.
+
 */
 
-startExplanation()
+startGame()
 
 

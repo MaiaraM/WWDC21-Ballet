@@ -12,12 +12,19 @@ import AVFoundation
 
 public class GameScene: SKScene {
     
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
+    public var choices:[String] = [
+        "button1",
+        "button2",
+        "button3",
+        "button4",
+        "button5"
+    ]
         
     private var buttonAudio : SKSpriteNode?
     
     private var label : SKLabelNode?
+    private var labelScore : SKLabelNode?
+
     private var chat : SKSpriteNode?
     private var videoThumb : SKSpriteNode?
 
@@ -30,6 +37,9 @@ public class GameScene: SKScene {
     private var button4:SKSpriteNode?
     private var button5:SKSpriteNode?
     
+    private var points:Int = 0
+    private var isGame:Bool = true
+   
     
     private var choice:String!
     private var videoIsPause:Bool = true
@@ -62,6 +72,10 @@ public class GameScene: SKScene {
             self.label = label
         }
         
+        if let labelScore = self.childNode(withName: "//labelScore") as? SKLabelNode {
+            self.labelScore = labelScore
+        }
+        
         
         if let chat = self.childNode(withName: "//chatNode") as? SKSpriteNode {
             self.chat = chat
@@ -86,7 +100,6 @@ public class GameScene: SKScene {
         /// Buttons
         
         if let button1 = self.childNode(withName: "//button1") as? SKSpriteNode {
-            print(button1)
             self.button1 = button1
             self.button1?.run(SKAction.init(named: "Alpha1")!)
         }
@@ -109,6 +122,8 @@ public class GameScene: SKScene {
             self.button5?.run(SKAction.init(named: "Alpha1")!)
 
         }
+        
+       
         
         if let videoThumb = self.childNode(withName: "//videoThumb") as? SKSpriteNode {
             self.videoThumb = videoThumb
@@ -163,12 +178,19 @@ public class GameScene: SKScene {
    
     
     func setGame() {
+        disableBottons(false)
+
         self.nextButton?.isHidden = true
         
-        self.choice = positions.randomElement()?.key
+        self.choice = choices.randomElement()
         self.label?.fontColor = UIColor.black
+        
         self.label?.text = positions[self.choice]
         let splitPosition = positions[self.choice]!.split(separator: Character(("\n")), omittingEmptySubsequences: true)
+        
+        if let index = self.choices.firstIndex(of: self.choice){
+            choices.remove(at:index)
+        }
 
         changeAudio(text: "\(splitPosition[0])")
         
@@ -186,11 +208,13 @@ public class GameScene: SKScene {
                 }else if self.atPoint(point).name == self.videoThumb?.name{
                        openVideo()
                 }else if let nameButton = self.atPoint(point).name{
+                    if isGame {
                         if let position = positions[nameButton] {
                             self.atPoint(point).run(SKAction.init(named: "Click")!)
                             verifyResponse(nameButton: nameButton, position: position)
                         }
                     }
+                }
             }else{
                 if self.atPoint(point).name == controllerIcon.name{
                     if videoIsPause{
@@ -227,14 +251,22 @@ public class GameScene: SKScene {
         let splitPosition = position.split(separator: Character(("\n")), omittingEmptySubsequences: true)
 
         if choice == nameButton{
-            self.chat?.run(SKAction.init(named: "Chat")!)
-            
-            self.label?.fontColor =  UIColor(red: 0.00, green: 0.50, blue: 0.25, alpha: 1.00)
-            self.nextButton?.isHidden = false
-            
-            text = "Yes! That is \(position) "
-            audioText = "Yes! That is \(splitPosition[0]) "
+            disableBottons(true)
 
+            points += 1
+            self.labelScore?.text = String(points)
+            
+            if points < 5 {
+                self.chat?.run(SKAction.init(named: "Chat")!)
+                
+                self.label?.fontColor =  UIColor(red: 0.00, green: 0.50, blue: 0.25, alpha: 1.00)
+                self.nextButton?.isHidden = false
+                
+                text = "Yes! That is \(position) "
+                audioText = "Yes! That is \(splitPosition[0]) "
+            }else{
+                endGame()
+            }
         }else{
             self.chat?.run(SKAction.init(named: "Chat")!)
             text = "Ops! That is \(position) "
@@ -242,10 +274,13 @@ public class GameScene: SKScene {
 
             self.label?.fontColor =  UIColor.red
         }
-        self.label?.text = text
-        changeAudio(text: audioText)
-        if self.synthesizer.isSpeaking {self.synthesizer.stopSpeaking(at: .immediate)}
-        self.synthesizer.speak(utterance)
+        
+        if points < 5 {
+                self.label?.text = text
+                if self.synthesizer.isSpeaking {self.synthesizer.stopSpeaking(at: .immediate)}
+                changeAudio(text: audioText)
+                self.synthesizer.speak(utterance)
+        }
     }
     
     func changeAudio(text:String){
@@ -257,7 +292,20 @@ public class GameScene: SKScene {
     }
     
     
+    func endGame(){
+        let audioText = "Congratulations! you got all positions right!"
+        self.label?.fontColor = UIColor.black
+        self.label?.text = audioText
+        if self.synthesizer.isSpeaking {self.synthesizer.stopSpeaking(at: .immediate)}
+        changeAudio(text: audioText)
+        self.synthesizer.speak(utterance)
+
+        self.nextButton?.isHidden = true
+        disableBottons(true)
+    }
+    
     func openVideo() {
+        disableBottons(true)
         self.audioMusic?.run(SKAction.pause())
 
            
@@ -283,7 +331,6 @@ public class GameScene: SKScene {
         self.resetIcon.position = CGPoint(x: self.barraControllerVideo.position.x + ( self.barraControllerVideo.size.width / 2) - 40 , y: self.barraControllerVideo.position.y)
         
         resetControllerVideo(open: true)
-
 
         self.videoNode.play()
         self.videoIsPause = false
@@ -315,6 +362,24 @@ public class GameScene: SKScene {
         self.videoNode.name = "closedVideo"
         self.videoNode.pause()
         self.videoIsPause = true
+    }
+    
+    func disableBottons(_ disable:Bool){
+        if disable {
+            self.isGame = false
+            self.button1?.run(SKAction.init(named: "BottonDisable")!)
+            self.button2?.run(SKAction.init(named: "BottonDisable")!)
+            self.button3?.run(SKAction.init(named: "BottonDisable")!)
+            self.button4?.run(SKAction.init(named: "BottonDisable")!)
+            self.button5?.run(SKAction.init(named: "BottonDisable")!)
+        }else{
+            self.isGame = true
+            self.button1?.run(SKAction.init(named: "Alpha1")!)
+            self.button2?.run(SKAction.init(named: "Alpha1")!)
+            self.button3?.run(SKAction.init(named: "Alpha1")!)
+            self.button4?.run(SKAction.init(named: "Alpha1")!)
+            self.button5?.run(SKAction.init(named: "Alpha1")!)
+        }
     }
     
     
