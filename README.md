@@ -1,4 +1,5 @@
 #  Basic Ballet :trophy: WWDC21 Challenge Winner #
+ <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image6.png?raw=true!" alt="image1" width="200"/>
 
 ## Overview ##
 :us:
@@ -15,10 +16,22 @@ Por isso pensem em um livro que  pudesse auxiliar os professore e incentivar nov
 
 ## About the PlayGroundBook ##
 
-<img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image1.png?raw=true!" alt="image1" width="400"/>
-<img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image2.png?raw=true!" alt="image1" width="400"/>
-<img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image3.png?raw=true!" alt="image1" width="400"/>
-<img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image4.png?raw=true!" alt="image1" width="400"/>
-<img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image5.png?raw=true!" alt="image1" width="400"/>
+<p>
+  <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image1.png?raw=true!" alt="image1" width="350"  height="300"/>
+  <span></span>
+  <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image2.png?raw=true!" alt="image1" width="400" height="300" />
+</p>
+
+<p>
+  <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image3.png?raw=true!" alt="image1" width="400" height="300"/>
+  <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image4.png?raw=true!" alt="image1" width="400" height="300"/>
+   <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image5.png?raw=true!" alt="image1" width="400"/>
+</p>
+
+<p>
+  <img src="https://github.com/MaiaraM/WWDC21-Ballet/blob/main/Images/Image7.png?raw=true!" alt="image1" width="400"/>
+</p>
+
+
 
 
